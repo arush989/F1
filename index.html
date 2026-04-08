@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="F1 Analytics Tracker - Drivers, Constructors, Schedule">
+    <title>F1 Analytics Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="logo">
+                <span class="f1-red">F1</span> Tracker
+            </div>
+            <ul class="nav-links">
+                <li class="active" data-view="dashboard">Dashboard</li>
+                <li data-view="drivers">Drivers</li>
+                <li data-view="constructors">Constructors</li>
+                <li data-view="schedule">Schedule</li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main id="main-content">
+            <!-- Loader -->
+            <div id="loader" class="loader active">
+                <div class="spinner"></div>
+                <p>Telemetry sync in progress...</p>
+            </div>
+
+            <!-- Dashboard View -->
+            <section id="dashboard" class="view">
+                <div class="header">
+                    <h1>Current Season Overview</h1>
+                    <p class="subtitle">Live from the grid</p>
+                </div>
+                
+                <div class="dashboard-grid">
+                    <div class="card glass-panel" id="leader-driver">
+                        <h3>Driver Leader</h3>
+                        <div class="leader-content blur-bg"></div>
+                    </div>
+                    <div class="card glass-panel" id="leader-team">
+                        <h3>Constructor Leader</h3>
+                        <div class="leader-content blur-bg"></div>
+                    </div>
+                    <div class="card glass-panel" id="next-race">
+                        <h3>Next Race</h3>
+                        <div class="leader-content blur-bg"></div>
+                    </div>
+                </div>
+
+                <div class="card chart-card glass-panel">
+                    <h3>Top 10 Drivers Points Distribution</h3>
+                    <canvas id="pointsChart"></canvas>
+                </div>
+            </section>
+
+            <!-- Drivers View -->
+            <section id="drivers" class="view hidden">
+                <div class="header">
+                    <h1>Driver Standings</h1>
+                </div>
+                <div class="standings-list" id="drivers-list">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+
+            <!-- Constructors View -->
+            <section id="constructors" class="view hidden">
+                <div class="header">
+                    <h1>Constructor Standings</h1>
+                </div>
+                <div class="standings-list grid-list" id="constructors-list">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+
+            <!-- Schedule View -->
+            <section id="schedule" class="view hidden">
+                <div class="header">
+                    <h1>Season Schedule</h1>
+                </div>
+                <div class="timeline" id="schedule-timeline">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>

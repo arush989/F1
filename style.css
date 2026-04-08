@@ -1,0 +1,405 @@
+:root {
+    --bg-dark: #0f1115;
+    --bg-panel: rgba(26, 29, 36, 0.6);
+    --bg-panel-hover: rgba(40, 44, 52, 0.8);
+    --text-primary: #ffffff;
+    --text-secondary: #94a3b8;
+    --f1-red: #e10600;
+    --f1-red-hover: #ff1e15;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --accent: #3b82f6;
+    
+    /* F1 Team Colors 2024/2025 */
+    --team-red_bull: #3671C6;
+    --team-ferrari: #E8002D;
+    --team-mclaren: #FF8000;
+    --team-mercedes: #27F4D2;
+    --team-aston_martin: #229971;
+    --team-alpine: #0093CC;
+    --team-williams: #64C4FF;
+    --team-rb: #6692FF;
+    --team-sauber: #00E701;
+    --team-haas: #B6BABD;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-dark);
+    /* Subtle radial gradient for depth */
+    background-image: radial-gradient(circle at top right, rgba(225, 6, 0, 0.1), transparent 40%),
+                      radial-gradient(circle at bottom left, rgba(59, 130, 246, 0.1), transparent 40%);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.f1-red {
+    color: var(--f1-red);
+    font-weight: 800;
+}
+
+/* Glassmorphism */
+.glass-panel {
+    background: var(--bg-panel);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel:hover {
+    background: var(--bg-panel-hover);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* Navigation */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    border-bottom: 1px solid var(--border-color);
+    background: rgba(15, 17, 21, 0.8);
+    backdrop-filter: blur(20px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    cursor: pointer;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links li {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.nav-links li:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-links li.active {
+    color: var(--text-primary);
+    background: var(--f1-red);
+    box-shadow: 0 4px 15px rgba(225, 6, 0, 0.4);
+}
+
+/* Main Content Layout */
+#main-content {
+    padding: 2rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    min-height: 80vh;
+}
+
+.header {
+    margin-bottom: 2rem;
+    animation: fadeInDown 0.6s ease-out;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+}
+
+.header .subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-top: 0.3rem;
+}
+
+/* View toggles */
+.view {
+    display: block;
+    animation: fadeIn 0.5s ease-out;
+}
+.view.hidden {
+    display: none;
+}
+
+/* Loader */
+#loader {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 50;
+}
+
+#loader.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--border-color);
+    border-top-color: var(--f1-red);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin { 100% { transform: rotate(360deg); } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Dashboard Variants */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.card {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.card h3 {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.leader-content {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.leader-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 800;
+    border: 3px solid transparent;
+}
+
+.leader-info h2 {
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.leader-info p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.team-color-border { border-color: var(--team-color, white); }
+.team-color-text { color: var(--team-color, white); }
+
+/* Chart Area */
+.chart-card {
+    width: 100%;
+    height: 400px;
+    padding-bottom: 4rem;
+}
+
+/* Standings Lists */
+.standings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.standing-item {
+    display: grid;
+    grid-template-columns: 50px 1fr 100px;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    gap: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.standing-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    background-color: var(--team-color, var(--text-secondary));
+}
+
+.pos {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-secondary);
+}
+
+.driver-detail {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.team-logo img {
+    height: 30px;
+    width: auto;
+    max-width: 60px;
+    object-fit: contain;
+    filter: brightness(0) invert(1); /* Ensure logos are white mostly */
+    opacity: 0.8;
+}
+
+.driver-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.team-name {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.points {
+    text-align: right;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+/* Constructors Grid List */
+.grid-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 1.5rem;
+}
+
+.constructor-item {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+}
+
+.constructor-item .team-logo img {
+    height: 50px;
+    max-width: 150px;
+    margin-bottom: 1rem;
+    filter: none;
+    opacity: 1;
+}
+
+.constructor-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.constructor-info h2 {
+    font-size: 1.5rem;
+}
+
+/* Timeline */
+.timeline {
+    position: relative;
+    padding-left: 2rem;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border-color);
+}
+
+.race-event {
+    position: relative;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.race-event::before {
+    content: '';
+    position: absolute;
+    left: -2rem;
+    top: 2rem;
+    width: 20px;
+    height: 20px;
+    background: var(--bg-dark);
+    border: 4px solid var(--f1-red);
+    border-radius: 50%;
+    transform: translateX(-2px);
+    z-index: 1;
+}
+
+.race-event.completed::before {
+    border-color: var(--text-secondary);
+}
+
+.race-date {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.race-name {
+    font-size: 1.4rem;
+    margin: 0.3rem 0;
+}
+
+.race-location {
+    color: var(--team-color, white);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .grid-list {
+        grid-template-columns: 1fr;
+    }
+}
